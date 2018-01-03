@@ -4,14 +4,14 @@ import {graphql} from 'react-apollo';
 import Link from "./Link";
 
 const ALL_LINKS_QUERY = gql`
-  query AllLinksQuery {
-      allLinks {
-          id
-          url
-          description
-          hash
-      }
-  }
+    query AllLinksQuery {
+        allLinks {
+            id
+            url
+            description
+            hash
+        }
+    }
 `;
 
 class LinkList extends Component {
