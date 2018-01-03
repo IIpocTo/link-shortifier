@@ -2,14 +2,46 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import {ApolloProvider} from 'react-apollo';
 import {ApolloClient} from 'apollo-client';
+import {split} from 'apollo-link';
 import {HttpLink} from 'apollo-link-http';
-import {InMemoryCache} from 'apollo-cache-inmemory'
+import {WebSocketLink} from "apollo-link-ws";
+import {InMemoryCache} from 'apollo-cache-inmemory';
+import {getMainDefinition} from "apollo-utilities";
 import './index.css';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 
+const GRAPHQL_ENDPOINT = '';
+const SUBSCRIPTIONS_ENDPOINT = '';
+
+if (!GRAPHQL_ENDPOINT) {
+  throw Error('Not provided GraphQL endpoint.')
+}
+
+if (!SUBSCRIPTIONS_ENDPOINT) {
+  throw Error('Not provided GraphQL subscriptions endpoint.')
+}
+
+const httpLink = new HttpLink({uri: GRAPHQL_ENDPOINT});
+
+const wsLink = new WebSocketLink({
+  uri: SUBSCRIPTIONS_ENDPOINT,
+  options: {
+    reconnect: true,
+  },
+});
+
+const link = split(
+  ({query}) => {
+    const {kind, operation} = getMainDefinition(query);
+    return kind === 'OperationDefinition' && operation === 'subscription';
+  },
+  wsLink,
+  httpLink,
+);
+
 const client = new ApolloClient({
-  link: new HttpLink({uri: 'your-api'}),
+  link,
   cache: new InMemoryCache(),
 });
 
