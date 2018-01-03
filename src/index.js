@@ -9,7 +9,7 @@ import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 
 const client = new ApolloClient({
-  link: new HttpLink({uri: 'https://api.graph.cool/simple/v1/cjby3j4zw2p2501654f37boui'}),
+  link: new HttpLink({uri: 'your-api'}),
   cache: new InMemoryCache(),
 });
 

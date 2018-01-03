@@ -1,0 +1,1 @@
+Simple URL length reducer built with React, Apollo and GraphQL.
