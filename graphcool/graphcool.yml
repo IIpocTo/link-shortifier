@@ -1,3 +1,9 @@
 types: ./types.graphql
 permissions:
   - operation: "*"
+functions:
+  createShortLink:
+    type: subscription
+    query: src/createShortLink.graphql
+    handler:
+      code: src/createShortLink.js

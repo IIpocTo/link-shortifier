@@ -22,3 +22,5 @@ yarn-error.log*
 /.idea/
 /shortifier.iml
 /graphcool/.graphcoolrc
+/graphcool/node_modules/
+config.txt
