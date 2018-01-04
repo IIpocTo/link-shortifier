@@ -8,8 +8,8 @@ import {WebSocketLink} from "apollo-link-ws";
 import {InMemoryCache} from 'apollo-cache-inmemory';
 import {getMainDefinition} from "apollo-utilities";
 import './index.css';
-import App from './App';
 import registerServiceWorker from './registerServiceWorker';
+import AppRouter from "./AppRouter";
 
 const GRAPHQL_ENDPOINT = '';
 const SUBSCRIPTIONS_ENDPOINT = '';
@@ -50,7 +50,7 @@ const withApolloProvider = Comp => (
 );
 
 ReactDOM.render(
-  withApolloProvider(<App/>),
+  withApolloProvider(<AppRouter/>),
   document.getElementById('root')
 );
 registerServiceWorker();
