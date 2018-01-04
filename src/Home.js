@@ -7,12 +7,12 @@ class Home extends Component {
     return (
       <div>
         <div>
-          <h2>All links</h2>
-          <LinkList/>
-        </div>
-        <div>
           <h2>Create a short link</h2>
           <CreateShortLink/>
+        </div>
+        <div>
+          <h2>All links</h2>
+          <LinkList/>
         </div>
       </div>
     );
